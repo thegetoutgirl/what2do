@@ -1,0 +1,17 @@
+.document {
+    background-color: lightgrey;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.navbar {
+    background-color: #fd7e14;
+    font-size: 20px;
+}
+
+.results {
+    text-align: center;
+}
