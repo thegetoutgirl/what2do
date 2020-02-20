@@ -26,6 +26,7 @@ $.ajax({
         newCardAction.append($("<a href=" + newPlace[i].url + ">").attr("target", "_blank").text("Website"));
         newCard.append(newCardImage, newCardContent, newCardAction);
         $("#restaurantCard").append(newCard);
+        //test
     }
     initMap(placeArr)
 });
