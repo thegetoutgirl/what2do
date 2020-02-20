@@ -1,15 +1,30 @@
-.document {
-    background-color: lightgrey;
-}
-
-.navbar-brand {
-    font-weight: bold;
+.brand-logo {
+    letter-spacing: 5px;
     font-size: 30px;
+    text-transform: uppercase;
 }
 
-.navbar {
-    background-color: #fd7e14;
+form {
+    display: flex;
+    justify-content: center;
+}
+
+.userInput {
+    margin: 35px 10px;;
+}
+
+.btn {
+    color: #ff6f00;
+}
+
+.nav-wrapper {
+    background-color: #ff6f00;
+    
     font-size: 20px;
+}
+
+.h1, .h2 {
+    text-align: center;
 }
 
 .results {

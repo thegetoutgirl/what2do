@@ -4,78 +4,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="assets/spacelab-bootstrap.css">
   <link rel="stylesheet" href="assets/what2do.css">
   <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <title>What2Do</title>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" href="#">What2Do</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
-      aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center">What2Do</a>
+      <ul id="nav-mobile" class="hide-on-med-and-down">
+        <li><a class="left about" href="#">About</a></li>
+        <li><a class="right contact" href="#">Contact</a></li>
       </ul>
     </div>
   </nav>
-  <hr>
 
-  <main class="container">
-    <!-- displays map under nav bar -->
-    <div id="map"></div>
-
-    <!-- wraps form in a row -->
-    <div class="row-12" id="userInput">
+  <main>
+    <div class="userInput">
       <form>
-        <div class="form-row">
-          <div class="form-group col">
-            <label for="cityInput">I'm in...</label>
-            <input type="text" class="form-control" placeholder="Enter city">
+        <div class="container">
+          <div class="row">
+            <div class="col s5">
+              <label class="cityForm" for="cityInput">I'm in...</label>
+              <input type="text" class="form-control" placeholder="Enter city">
+            </div>
+            <div class="col s5">
+              <label class="eventForm" for="eventInput">I'm looking for...</label>
+              <input type="text" class="form-control" placeholder="Enter an event">
+            </div>
+            <div class="col s2">
+              <a class="waves-effect waves-light btn">Search</a>
+            </div>
           </div>
-          <div class="form-group col">
-            <label for="eventInput">I'm looking for...</label>
-            <input type="text" class="form-control" placeholder="Enter an event">
-          </div>
-          <button type="button" class="btn btn-primary">Search</button>
-        </div>   
+        </div>
       </form>
     </div>
 
     <hr>
-    
-    <div class="row">
-      <div class="h1 col" id="places">
-        Places
-      </div>
-    </div>
-    <section class="row">
-      <div class="h1 col" id="restaurants">
-        Restaurants
-        <section class="card">
-          <section class="card-body" id="restaurantCard"></section>
-        </section>
-      </div>
-    </section>
-    </div>
+   
 
+    <div class="results">
+      <div class="row">
+        <h1 id="map" class="col s6">Places</h1>
+        <h2 id="restaurantCard" class="col s6">Restaurants</h2>
+      </div>
+    </div>
   </main>
 
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYqUyaFCNKimpVDjKqBasRC8hzcPWn4r4"></script>
+
+  <script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYqUyaFCNKimpVDjKqBasRC8hzcPWn4r4"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="Assets/script.js"></script>
 
