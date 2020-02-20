@@ -16,6 +16,14 @@ $.ajax({
     var placeArr = [];
     for (var i = 0; i < newPlace.length; i++) {
         placeArr.push({lat: newPlace[i].coordinates.latitude, lng: newPlace[i].coordinates.longitude});
+        var newUL = $("<ul>").attr("class", "list-group")
+        var newList = $("<li>").attr("class", "list-group-item");
+        var newName = $("<p>").text(newPlace[i].name);
+        var newImage = $("<img src=" + newPlace[i].image_url + ">").css({"width": "10%", "height": "10%"});
+        var newURL = $("<a href=" + newPlace[i].url + ">").attr("target", "_blank").text("Website");
+        newList.append(newName, newImage, newURL);
+        newUL.append(newList);
+        $("#restaurantCard").append(newUL);
     }
     initMap(placeArr)
 });
