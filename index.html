@@ -4,9 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="assets/what2do.css">
   <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="assets/what2do.css">
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC&display=swap" rel="stylesheet">
   <title>What2Do</title>
 </head>
 
@@ -45,12 +46,27 @@
     <hr>
 
     <div id="map"></div>
+
+    <hr> 
+
+
     <div class="row" id="results">
-        <div class="col s6">Places</div>
+        <div class="col s6" id="placesCard">Places</div>
         <div class="col s6" id="restaurantCard">Restaurants</div>
     </div>
   </main>
 
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+    <div class="footer-copyright">
+      <div class="container">
+      © 2020. What2Do Inc. 
+      <a class="grey-text text-lighten-2 right" href="https://github.com/marshdugan/Project1">Link to GitHub Repo</a>
+      </div>
+    </div>
+  </footer>
 
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYqUyaFCNKimpVDjKqBasRC8hzcPWn4r4"></script>
