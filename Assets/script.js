@@ -1,12 +1,15 @@
 //var queryURL = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAYqUyaFCNKimpVDjKqBasRC8hzcPWn4r4&libraries=places";
-//var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJrTLr-GyuEmsRBfy61i59si0&key=AIzaSyAYqUyaFCNKimpVDjKqBasRC8hzcPWn4r4"
-//var yelpURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=Dining&location=Philadelphia&limit=5";
+
+var placeID;
+var placeLat;
+var placeLong;
 
 $("#searchBtn").on("click", function() {
     event.preventDefault();
     var userCity = $("#cityInput").val().trim();
     var userEvent = $("#eventInput").val().trim();
     var yelpURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=" + userEvent + "&location=" + userCity + "&limit=5";
+    var getPlaceIdURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + userCity + "&inputtype=textquery&key=AIzaSyAYqUyaFCNKimpVDjKqBasRC8hzcPWn4r4";
     $.ajax({
         url: yelpURL,
         method: "GET",
@@ -15,13 +18,13 @@ $("#searchBtn").on("click", function() {
         },
         dataType: "json"
     }).then(function(response) {
-        console.log(response);
+        //console.log(response);
         $("#restaurantCard").empty();
         var newPlace = response.businesses;
         var placeArr = [];
         for (var i = 0; i < newPlace.length; i++) {
             placeArr.push({lat: newPlace[i].coordinates.latitude, lng: newPlace[i].coordinates.longitude});
-    
+            
             var newCard = $("<div>").addClass("card");
             var newCardImage = $("<div>").addClass("card-image");
             var newCardContent = $("<div>").addClass("card-content");
@@ -34,15 +37,33 @@ $("#searchBtn").on("click", function() {
         }
         initMap(placeArr)
     });
+    
+    $.ajax({
+        url: getPlaceIdURL,
+        method: "GET",
+    }).then(function(getID) {
+        placeID = getID.candidates[0].place_id;
+        var getLatLongURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=" + placeID + "&key=AIzaSyAYqUyaFCNKimpVDjKqBasRC8hzcPWn4r4";
+        $.ajax({
+            url: getLatLongURL,
+            method: "GET",
+        }).then(function(googleDetail) {
+            console.log(googleDetail);
+            placeLat = googleDetail.result.geometry.location.lat;
+            placeLong = googleDetail.result.geometry.location.lng;
+            var googleURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + placeLat + "," + placeLong + "&radius=1500&type=" + userEvent + "&key=AIzaSyAYqUyaFCNKimpVDjKqBasRC8hzcPWn4r4";
+            $.ajax({
+                url: googleURL,
+                method: "GET",
+            }).then(function(nearbyPlace) {
+                console.log(nearbyPlace);
+            });
+        });
+    });
+    
 });
 
 
-// $.ajax({
-//     url: queryURL,
-//     method: "GET",
-// }).then(function(google) {
-//     console.log(google);
-// });
 
 function initMap(places) {
     var map = new google.maps.Map(document.getElementById('map'), {zoom: 14, center: places[0]});
