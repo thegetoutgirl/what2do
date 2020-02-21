@@ -18,22 +18,33 @@ $("#searchBtn").on("click", function() {
         },
         dataType: "json"
     }).then(function(response) {
-        //console.log(response);
-        $("#restaurantCard").empty();
+        console.log(response);
+        $("#yelpCard").empty();
         var newPlace = response.businesses;
         var placeArr = [];
         for (var i = 0; i < newPlace.length; i++) {
             placeArr.push({lat: newPlace[i].coordinates.latitude, lng: newPlace[i].coordinates.longitude});
             
-            var newCard = $("<div>").addClass("card");
-            var newCardImage = $("<div>").addClass("card-image");
+            var newCard = $("<div>").addClass("card sticky-action");
+            var newCardImage = $("<div>").addClass("card-image waves-effect waves-block waves-light");
+            var newCardTitle = $("<span>").addClass("card-title activator");
             var newCardContent = $("<div>").addClass("card-content");
+            var newCardReveal = $("<div>").addClass("card-reveal");
             var newCardAction = $("<div>").addClass("card-action");
-            newCardImage.append($("<img src=" + newPlace[i].image_url + ">").css({"width": "35%", "height": "35%"}));
-            newCardContent.append($("<p>").text(newPlace[i].name));
+
+            newCardImage.append($("<img src=" + newPlace[i].image_url + ">").addClass("activator").css({"width": "35%", "height": "35%"}));
+            newCardTitle.text(newPlace[i].name).append(($("<i>").addClass("fas fa-ellipsis-v right")));
+            newCardContent.append(newCardTitle);
+            for (var j = 0; j < newPlace[i].categories.length; j++) {
+                newCardContent.append($("<p>").text(newPlace[i].categories[j].title));
+            }
+
+            newCardReveal.append($("<span>").addClass("card-title").text(newPlace[i].name).append($("<i>").addClass("fas fa-times right")));
+            newCardReveal.append($("<p>").text("this is a test"));
             newCardAction.append($("<a href=" + newPlace[i].url + ">").attr("target", "_blank").text("Website"));
-            newCard.append(newCardImage, newCardContent, newCardAction);
-            $("#restaurantCard").append(newCard);
+
+            newCard.append(newCardImage, newCardContent, newCardReveal, newCardAction);
+            $("#yelpCard").append(newCard);
         }
         initMap(placeArr)
     });
@@ -46,7 +57,7 @@ $("#searchBtn").on("click", function() {
         var getLatLongURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=" + placeID + "&key=AIzaSyAYqUyaFCNKimpVDjKqBasRC8hzcPWn4r4";
         $.ajax({
             url: getLatLongURL,
-            method: "GET",
+            method: "GET"
         }).then(function(googleDetail) {
             console.log(googleDetail);
             placeLat = googleDetail.result.geometry.location.lat;
@@ -77,4 +88,10 @@ function initMap(places) {
     //map.fitBounds(bounds);
 }
 
+
+// $(document).on("click", ".card-reveal", function(event) {
+//     event.stopPropagation();
+//     $(this).find("> .card-title").trigger("click");
+//     return false;
+// });
 

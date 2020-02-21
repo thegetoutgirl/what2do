@@ -35,14 +35,14 @@ label {
     font-size: 20px;
 }
 
-/** #placesCard, #restaurantCard {
+/* #placesCard, #restaurantCard {
     text-align: center;
     font-weight: bold;
     font-size: 20px;
     background-color: #D9E8F5;
-} **/
+}  */
 
-.card {
+/* .card {
     display: flex;
     justify-content: right;
     height: 200px;
@@ -61,22 +61,22 @@ label {
   .card-content {
     width: 60%;
     float: right;
-  }
+  } */
 
 #results {
     text-align: center;
 }
 
 #map {
-    height: 400px;  /* The height is 400 pixels */
-    width: 100%;  /* The width is the width of the web page */
+    height: 400px;
+    width: 100%;  
 }
 
 .page-footer {
     background-color: #F26101;
 }
 
-/** About page CSS **/
+/* About page CSS  */
 
 #aboutWhat2Do {
     color: #91BED4;
