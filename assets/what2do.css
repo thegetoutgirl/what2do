@@ -1,6 +1,8 @@
 .brand-logo {
-    letter-spacing: 5px;
+    font-family: 'Playfair Display SC';
+    letter-spacing: 15px;
     font-size: 30px;
+    font-weight: bold;
     text-transform: uppercase;
 }
 
@@ -10,28 +12,96 @@ form {
 }
 
 .userInput {
-    margin: 35px 10px;;
+    margin: 35px 20px;;
+}
+
+label {
+    font-size: 16px;
 }
 
 .btn {
-    color: #ff6f00;
+    background-color: #ff6f00;
+    position: relative;
+    justify-content: center;
+}
+
+.btn:hover {
+    background-color: #304269;
 }
 
 .nav-wrapper {
-    background-color: #ff6f00;
+    background-color: #F26101;
     
     font-size: 20px;
 }
 
-.h1, .h2 {
+/** #placesCard, #restaurantCard {
     text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: #D9E8F5;
+} **/
+
+.card {
+    display: flex;
+    justify-content: right;
+    height: 200px;
+    width: 350px;
 }
 
-.results {
+.card-image {
+    float: left;
+    width: 40%;
+    height: 250px;
+    width: 250px;
+  }
+  .card-image img {
+    height: 100%;
+  }
+  .card-content {
+    width: 60%;
+    float: right;
+  }
+
+#results {
     text-align: center;
 }
 
 #map {
     height: 400px;  /* The height is 400 pixels */
     width: 100%;  /* The width is the width of the web page */
+}
+
+.page-footer {
+    background-color: #F26101;
+}
+
+/** About page CSS **/
+
+#aboutWhat2Do {
+    color: #91BED4;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding: 15px 15px;;
+}
+
+#aboutTitle {
+    color: #F26101;
+    padding: 20px 20px;;
+    text-align: center;
+    font-family: 'Playfair Display SC';
+    text-transform: uppercase;
+    font-weight: bold;
+    display: grid;
+    position: relative;
+    justify-content: center;
+}
+
+#description {
+    position: relative;
+    padding: 5px;
+    font-size: 20px;
+    font-family: 'Halant';
 }
