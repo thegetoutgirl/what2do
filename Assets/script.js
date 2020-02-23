@@ -31,16 +31,25 @@ $("#searchBtn").on("click", function() {
             var newCardContent = $("<div>").addClass("card-content");
             var newCardReveal = $("<div>").addClass("card-reveal");
             var newCardAction = $("<div>").addClass("card-action");
-
-            newCardImage.append($("<img src=" + newPlace[i].image_url + ">").addClass("activator").css({"width": "35%", "height": "35%"}));
+            if (newPlace[i].image_url !== "") {
+                newCardImage.append($("<img src=" + newPlace[i].image_url + ">").addClass("activator").css({"width": "35%", "height": "35%"}));
+            } else {
+                newCardImage.append($("<img src=https://cdn.worldvectorlogo.com/logos/yelp-icon.svg>").addClass("activator").css({"width": "35%", "height": "35%"}));
+            }
             newCardTitle.text(newPlace[i].name).append(($("<i>").addClass("fas fa-ellipsis-v right")));
             newCardContent.append(newCardTitle);
+            var tempString = "";
             for (var j = 0; j < newPlace[i].categories.length; j++) {
-                newCardContent.append($("<p>").text(newPlace[i].categories[j].title));
+                tempString += newPlace[i].categories[j].title;
+                if (j !== newPlace[i].categories.length - 1) {
+                    tempString += ", ";
+                }
             }
+            newCardContent.append($("<p>").text(tempString));
 
-            newCardReveal.append($("<span>").addClass("card-title").text(newPlace[i].name).append($("<i>").addClass("fas fa-times right")));
-            newCardReveal.append($("<p>").text("this is a test"));
+            newCardReveal.append($("<span>").addClass("card-title grey-text text-darken-4").text(newPlace[i].name).append($("<i>").addClass("fas fa-times right")));
+            newCardReveal.append($("<p>").text(newPlace[i].location.display_address[0] + " " + newPlace[i].location.display_address[1]));
+            newCardReveal.append($("<p>").text(newPlace[i].display_phone));
             newCardAction.append($("<a href=" + newPlace[i].url + ">").attr("target", "_blank").text("Website"));
 
             newCard.append(newCardImage, newCardContent, newCardReveal, newCardAction);
@@ -55,19 +64,69 @@ $("#searchBtn").on("click", function() {
     }).then(function(getID) {
         placeID = getID.candidates[0].place_id;
         var getLatLongURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=" + placeID + "&key=AIzaSyAYqUyaFCNKimpVDjKqBasRC8hzcPWn4r4";
+        
         $.ajax({
             url: getLatLongURL,
             method: "GET"
         }).then(function(googleDetail) {
-            console.log(googleDetail);
+            //console.log(googleDetail);
             placeLat = googleDetail.result.geometry.location.lat;
             placeLong = googleDetail.result.geometry.location.lng;
-            var googleURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + placeLat + "," + placeLong + "&radius=1500&type=" + userEvent + "&key=AIzaSyAYqUyaFCNKimpVDjKqBasRC8hzcPWn4r4";
+            
+            var googleURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + placeLat + "," + placeLong + "&radius=1500&type=" + userEvent + "&keyword=" + userEvent + "&key=AIzaSyAYqUyaFCNKimpVDjKqBasRC8hzcPWn4r4";
             $.ajax({
                 url: googleURL,
                 method: "GET",
             }).then(function(nearbyPlace) {
-                console.log(nearbyPlace);
+                //console.log(nearbyPlace);
+                $("#googleCard").empty();
+                var newPlace = nearbyPlace.results;
+                var placeArr = [];
+                for (var i = 1; i < newPlace.length; i++) {
+                    placeArr.push({lat: newPlace[i].geometry.location.lat, lng: newPlace[i].geometry.location.lng});
+                    
+                    var getSinglePlaceURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=" + newPlace[i].place_id + "&key=AIzaSyAYqUyaFCNKimpVDjKqBasRC8hzcPWn4r4";
+                    $.ajax({
+                        url: getSinglePlaceURL,
+                        method: "GET"
+                    }).then(function(details) {
+                        //console.log(details);
+                        var newDetails = details.result;
+                        var newCard = $("<div>").addClass("card sticky-action");
+                        var newCardImage = $("<div>").addClass("card-image waves-effect waves-block waves-light");
+                        var newCardTitle = $("<span>").addClass("card-title activator");
+                        var newCardContent = $("<div>").addClass("card-content");
+                        var newCardReveal = $("<div>").addClass("card-reveal");
+                        var newCardAction = $("<div>").addClass("card-action");
+                        // if (newPlace[i].image_url !== "") {
+                        //     newCardImage.append($("<img src=" + newDetails.image_url + ">").addClass("activator").css({"width": "35%", "height": "35%"}));
+                        // } else {
+                        //     newCardImage.append($("<img src=https://cdn.worldvectorlogo.com/logos/yelp-icon.svg>").addClass("activator").css({"width": "35%", "height": "35%"}));
+                        // }
+                        newCardTitle.text(newDetails.name).append(($("<i>").addClass("fas fa-ellipsis-v right")));
+                        newCardContent.append(newCardTitle);
+                        var tempString = "";
+                        for (var j = 0; j < newDetails.types.length; j++) {
+                            tempString += newDetails.types[j];
+                            if (j !== newDetails.types.length - 1) {
+                                tempString += ", ";
+                            }
+                        }
+                        newCardContent.append($("<p>").text(tempString));
+            
+                        newCardReveal.append($("<span>").addClass("card-title grey-text text-darken-4").text(newDetails.name).append($("<i>").addClass("fas fa-times right")));
+                        newCardReveal.append($("<p>").text(newDetails.formatted_address));
+                        newCardReveal.append($("<p>").text(newDetails.formatted_phone_number));
+                        newCardAction.append($("<a href=" + newDetails.website + ">").attr("target", "_blank").text("Website"));
+            
+                        newCard.append(newCardImage, newCardContent, newCardReveal, newCardAction);
+                        $("#googleCard").append(newCard);
+                        //initMap(placeArr)
+                        
+                    });
+                }
+                         
+                
             });
         });
     });
