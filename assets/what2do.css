@@ -40,19 +40,14 @@ label {
     font-size: 20px;
 }
 
+
+
 @media only screen and (max-width: 768px) {
     #nav-wrapper {
        display: grid;
        justify-content: left;
     }
 }
-/** #placesCard, #restaurantCard {
-    padding: 15px 25px;;
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-} **/
-
 .col {
   column-width: 250px;  
   column-gap: 25in;
@@ -60,7 +55,6 @@ label {
   margin: auto;
 
 }
-
 .card {
     display: flex;
     justify-content: right;
@@ -81,7 +75,7 @@ label {
   .card-content {
     width: 60%;
     float: right;
-  }
+  } */
 
 #results {
     text-align: center;
@@ -89,15 +83,15 @@ label {
 }
 
 #map {
-    height: 400px;  /* The height is 400 pixels */
-    width: 100%;  /* The width is the width of the web page */
+    height: 400px;
+    width: 100%;  
 }
 
 .page-footer {
     background-color: #F26101;
 }
 
-/** About page CSS **/
+/* About page CSS  */
 
 #aboutWhat2Do {
     color: #91BED4;
