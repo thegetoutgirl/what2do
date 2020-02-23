@@ -98,11 +98,7 @@ $("#searchBtn").on("click", function() {
                         var newCardContent = $("<div>").addClass("card-content");
                         var newCardReveal = $("<div>").addClass("card-reveal");
                         var newCardAction = $("<div>").addClass("card-action");
-                        // if (newPlace[i].image_url !== "") {
-                        //     newCardImage.append($("<img src=" + newDetails.image_url + ">").addClass("activator").css({"width": "35%", "height": "35%"}));
-                        // } else {
-                        //     newCardImage.append($("<img src=https://cdn.worldvectorlogo.com/logos/yelp-icon.svg>").addClass("activator").css({"width": "35%", "height": "35%"}));
-                        // }
+
                         newCardTitle.text(newDetails.name).append(($("<i>").addClass("fas fa-ellipsis-v right")));
                         newCardContent.append(newCardTitle);
                         var tempString = "";

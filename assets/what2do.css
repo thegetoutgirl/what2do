@@ -55,27 +55,6 @@ label {
   margin: auto;
 
 }
-.card {
-    display: flex;
-    justify-content: right;
-    height: 250px;
-    width: 300px;
-}
-
-.card-image {
-    display: flex;
-    justify-content: left;
-    width: 60%;
-    height: 250px;
-    width: 250px;
-  }
-  .card-image img {
-    height: 100%;
-  }
-  .card-content {
-    width: 60%;
-    float: right;
-  } */
 
 #results {
     text-align: center;
