@@ -55,9 +55,16 @@ label {
   margin: auto;
 
 }
+
+#yelpCard img {
+    height: 20%;
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #yelpCard .card-image {
-    height: 188.3px;
-    width: 737.1px;
+    background-color: #F9A80C;
 }
 
 #results {
