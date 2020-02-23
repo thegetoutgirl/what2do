@@ -55,27 +55,17 @@ label {
   margin: auto;
 
 }
-.card {
-    display: flex;
-    justify-content: right;
-    height: 250px;
-    width: 300px;
+
+#yelpCard img {
+    height: 20%;
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.card-image {
-    display: flex;
-    justify-content: left;
-    width: 60%;
-    height: 250px;
-    width: 250px;
-  }
-  .card-image img {
-    height: 100%;
-  }
-  .card-content {
-    width: 60%;
-    float: right;
-  } */
+#yelpCard .card-image {
+    background-color: #F9A80C;
+}
 
 #results {
     text-align: center;

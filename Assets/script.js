@@ -8,7 +8,7 @@ $("#searchBtn").on("click", function() {
     event.preventDefault();
     var userCity = $("#cityInput").val().trim();
     var userEvent = $("#eventInput").val().trim();
-    var yelpURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=" + userEvent + "&location=" + userCity + "&limit=5";
+    var yelpURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=" + userEvent + "&location=" + userCity + "&limit=10";
     var getPlaceIdURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + userCity + "&inputtype=textquery&key=AIzaSyAYqUyaFCNKimpVDjKqBasRC8hzcPWn4r4";
     $.ajax({
         url: yelpURL,
@@ -18,7 +18,7 @@ $("#searchBtn").on("click", function() {
         },
         dataType: "json"
     }).then(function(response) {
-        console.log(response);
+        //console.log(response);
         $("#yelpCard").empty();
         var newPlace = response.businesses;
         var placeArr = [];
@@ -32,7 +32,7 @@ $("#searchBtn").on("click", function() {
             var newCardReveal = $("<div>").addClass("card-reveal");
             var newCardAction = $("<div>").addClass("card-action");
             if (newPlace[i].image_url !== "") {
-                newCardImage.append($("<img src=" + newPlace[i].image_url + ">").addClass("activator").css({"width": "35%", "height": "35%"}));
+                newCardImage.append($("<img src=" + newPlace[i].image_url + ">").addClass("activator"));
             } else {
                 newCardImage.append($("<img src=https://cdn.worldvectorlogo.com/logos/yelp-icon.svg>").addClass("activator").css({"width": "35%", "height": "35%"}));
             }
@@ -98,11 +98,7 @@ $("#searchBtn").on("click", function() {
                         var newCardContent = $("<div>").addClass("card-content");
                         var newCardReveal = $("<div>").addClass("card-reveal");
                         var newCardAction = $("<div>").addClass("card-action");
-                        // if (newPlace[i].image_url !== "") {
-                        //     newCardImage.append($("<img src=" + newDetails.image_url + ">").addClass("activator").css({"width": "35%", "height": "35%"}));
-                        // } else {
-                        //     newCardImage.append($("<img src=https://cdn.worldvectorlogo.com/logos/yelp-icon.svg>").addClass("activator").css({"width": "35%", "height": "35%"}));
-                        // }
+
                         newCardTitle.text(newDetails.name).append(($("<i>").addClass("fas fa-ellipsis-v right")));
                         newCardContent.append(newCardTitle);
                         var tempString = "";
