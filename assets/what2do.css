@@ -1,6 +1,6 @@
 .body {
     width: 100%;
-    margin: auto;
+    margin: 5px;
 }
 
 .brand-logo {
@@ -36,7 +36,6 @@ label {
 
 .nav-wrapper {
     background-color: #F26101;
-    
     font-size: 20px;
 }
 

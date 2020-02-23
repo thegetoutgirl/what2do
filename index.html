@@ -29,15 +29,27 @@
       <form>
         <div class="container">
           <div class="row">
-            <div class="col s5">
-              <label class="cityForm" for="cityInput">I'm in...</label>
+            <div class="col s12 l5">
+              <label class="cityForm" for="cityInput"><h5>I'm in...</h5></label>
               <input type="text" class="form-control" id="cityInput" placeholder="Enter city">
             </div>
-            <div class="col s5">
-              <label class="eventForm" for="eventInput">I'm looking for...</label>
-              <input type="text" class="form-control" id="eventInput" placeholder="Enter an event">
+            <div class="col s12 l5">
+              <label class="eventForm" for="eventInput"><h5>I'm looking for...</h5></label>
+              <input type="text" class=" id="eventInput" placeholder="Enter an event">
+
+  <!-- Dropdown Trigger -->
+  <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>
+
+  <!-- Dropdown Structure -->
+  <ul id='dropdown1' class='dropdown-content'>
+    <li><a href="#!">one</a></li>
+    <li><a href="#!">two</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">three</a></li>
+  </ul>
+             
             </div>
-            <div class="col s2">
+            <div class="col l2 s5">
               <button class="waves-effect waves-light btn" id="searchBtn">Search</button>
             </div>
           </div>
@@ -54,8 +66,8 @@
 
     <div class="row" id="results">
 
-        <div class="z-depth-1 col s6" id="googleCard"></div>
-        <div class="z-depth-1 col s6" id="yelpCard"></div>
+        <div class="z-depth-1 col s12 l6" id="googleCard"></div>
+        <div class="z-depth-1 col s12 l6" id="yelpCard"></div>
 
 
     </div>
