@@ -5,9 +5,13 @@ Our project involved creating an application by which the user could input a loc
 ## App User Story/Working Tree
 <br>
 AS a traveler in a new city or someone looking for new experiences I want an app to help me find what2do.
+<br>
 WHEN the user loads the page
+<br>
 THEN the user is presented with an input
+<br>
 WHEN the user types a location and event
+<br>
 THEN specific results are displayed on the page matching the user's specific search criteria (events, restaurants, museums, parks, bars, clubs, etc)
 
 ## App Functionality
