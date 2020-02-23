@@ -55,6 +55,10 @@ label {
   margin: auto;
 
 }
+#yelpCard .card-image {
+    height: 188.3px;
+    width: 737.1px;
+}
 
 #results {
     text-align: center;

@@ -32,7 +32,9 @@ $("#searchBtn").on("click", function() {
             var newCardReveal = $("<div>").addClass("card-reveal");
             var newCardAction = $("<div>").addClass("card-action");
             if (newPlace[i].image_url !== "") {
-                newCardImage.append($("<img src=" + newPlace[i].image_url + ">").addClass("activator").css({"width": "35%", "height": "35%"}));
+                newCardImage.append($("<img src=" + newPlace[i].image_url + ">").addClass("activator"));
+                //console.log($("#yelpCard .card-image").width);
+                //console.log($("#yelpCard .card-image").hight);
             } else {
                 newCardImage.append($("<img src=https://cdn.worldvectorlogo.com/logos/yelp-icon.svg>").addClass("activator").css({"width": "35%", "height": "35%"}));
             }
