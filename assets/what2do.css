@@ -1,3 +1,8 @@
+.body {
+    width: 100%;
+    margin: auto;
+}
+
 .brand-logo {
     font-family: 'Playfair Display SC';
     letter-spacing: 15px;
@@ -19,13 +24,13 @@ label {
     font-size: 16px;
 }
 
-.btn {
+#searchBtn {
     background-color: #ff6f00;
     position: relative;
     justify-content: center;
 }
 
-.btn:hover {
+#searchBtn:hover {
     background-color: #304269;
 }
 
@@ -35,23 +40,32 @@ label {
     font-size: 20px;
 }
 
-/* #placesCard, #restaurantCard {
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-    background-color: #D9E8F5;
-}  */
 
-/* .card {
+
+@media only screen and (max-width: 768px) {
+    #nav-wrapper {
+       display: grid;
+       justify-content: left;
+    }
+}
+.col {
+  column-width: 250px;  
+  column-gap: 25in;
+  padding: 15px 15px;;
+  margin: auto;
+
+}
+.card {
     display: flex;
     justify-content: right;
-    height: 200px;
-    width: 350px;
+    height: 250px;
+    width: 300px;
 }
 
 .card-image {
-    float: left;
-    width: 40%;
+    display: flex;
+    justify-content: left;
+    width: 60%;
     height: 250px;
     width: 250px;
   }
@@ -65,6 +79,7 @@ label {
 
 #results {
     text-align: center;
+    font-family: 'Roboto';
 }
 
 #map {
