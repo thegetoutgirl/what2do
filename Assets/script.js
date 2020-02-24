@@ -5,6 +5,7 @@ var placeLong;
 
 //When search button is clicked start everything
 $("#searchBtn").on("click", function() {
+    var placeArr = [];
     event.preventDefault();
     var userCity = $("#cityInput").val().trim();
     var userEvent = $("#eventInput").val().trim();
@@ -18,10 +19,8 @@ $("#searchBtn").on("click", function() {
         },
         dataType: "json"
     }).then(function(response) {
-        //console.log(response);
         $("#yelpCard").empty();
         var newPlace = response.businesses;
-        var placeArr = [];
         //Each item in the array is a different location 
         for (var i = 0; i < newPlace.length; i++) {
             //Updating map with Yelp location - setting each item in an array to an object with lat, long coordinates
@@ -67,8 +66,6 @@ $("#searchBtn").on("click", function() {
             //Then appending that card to the page
             $("#yelpCard").append(newCard);
         }
-        //Calls the map function after the for loop - so each element of the array is a coordinate of a place
-        initMap(placeArr);
     });
     
     //Triple nested ajax call
@@ -103,7 +100,6 @@ $("#searchBtn").on("click", function() {
                 //Clears the card for every new search
                 $("#googleCard").empty();
                 var newPlace = nearbyPlace.results;
-                var placeArr = [];
                 //Each item in the array is a different nearby location
                 for (var i = 1; i < newPlace.length; i++) {
                     //Updating map with Google location - setting each item in an array to an object with lat, long coordinates
@@ -111,14 +107,13 @@ $("#searchBtn").on("click", function() {
                     
                     //Google api place/detail - place_id = newPlace[i].place_id
                     var getSinglePlaceURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=" + newPlace[i].place_id + "&key=AIzaSyAYqUyaFCNKimpVDjKqBasRC8hzcPWn4r4";
-
                     //Ajax call inside the for loop as we need the placeID from each nearby location
                     $.ajax({
                         url: getSinglePlaceURL,
                         method: "GET"
                     }).then(function(details) {
                         var newDetails = details.result;
-
+            
                         //Creating the cards for materialize
                         var newCard = $("<div>").addClass("card sticky-action");
                         var newCardImage = $("<div>").addClass("card-image waves-effect waves-block waves-light");
@@ -154,8 +149,8 @@ $("#searchBtn").on("click", function() {
                         
                     });
                 }
-                //Calls the map function after the for loop - so each element of the array is a coordinate of a place
-                initMap(placeArr);         
+                //Calls the map function each element of the array is a coordinate of a place - includes both Yelp and Google results
+                initMap(placeArr);
             });
         });
     });
@@ -163,14 +158,18 @@ $("#searchBtn").on("click", function() {
 
 //Creates a map
 function initMap(places) {
+    $("#map").empty();
+    var bounds = new google.maps.LatLngBounds();
     //Centers the map based on the first element of the array
     var map = new google.maps.Map(document.getElementById('map'), {zoom: 14, center: places[0]});
     //Each element of the array is an object containing latitude and longitude 
     for (var i = 0; i < places.length; i++) {
         //newSpot is set to the object
         var newSpot = places[i]; 
-        var bounds = new google.maps.LatLngBounds(newSpot);
+        bounds.extend(newSpot);
         //The marker is set based on the coordinates
         var marker = new google.maps.Marker({position: newSpot, map: map});
     }
+    //Fits the map to include all markers
+    map.fitBounds(bounds);
 }
