@@ -25,7 +25,7 @@ label {
 }
 
 #searchBtn {
-    background-color: #ff6f00;
+    background-color: #F26101;
     position: relative;
     justify-content: center;
 }
@@ -64,7 +64,7 @@ label {
 }
 
 #yelpCard .card-image {
-    background-color: #F9A80C;
+    background-color: #F26101;
 }
 
 #results {
