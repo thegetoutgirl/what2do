@@ -1,6 +1,6 @@
-# What2Do: An App That Finds Things to Do
+# What2Do: An App For Finding New Experiences
 
-Our project involved creating an application by which the user could input a location and receive local data in return. Examples of data incliude: restuarants, parks, bars, clubs, museums, and much more. Our app is designed to create new life experiences for the user. 
+Our project involved creating an application by which the user could input a location and receive local data in return. Examples of data include: restuarants, parks, bars, clubs, museums, and much more. Our app is designed to create new life experiences for the user. 
 
 ## App User Story/Working Tree
 <br>
